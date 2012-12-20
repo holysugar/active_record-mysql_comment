@@ -6,14 +6,13 @@ module ActiveRecord
   module ConnectionAdapters
     class AbstractMysqlAdapter
       class Column
-
         # not using attr_reader to avoid change initialize interface,
         # which is different between version 3.x and 4.x.
         attr_accessor :comment
       end
 
       # overwrite
-      def columns(table_name, name = nil)#:nodoc:
+      def columns(table_name, name = nil) #:nodoc:
         sql = "SHOW FULL FIELDS FROM #{quote_table_name(table_name)}"
         execute_and_free(sql, 'SCHEMA') do |result|
           each_hash(result).map do |field|
@@ -22,10 +21,7 @@ module ActiveRecord
             c
           end
         end
-
       end
-
     end
-
   end
 end
