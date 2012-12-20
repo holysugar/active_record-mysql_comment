@@ -1,5 +1,6 @@
 require "active_record"
 require "active_record/connection_adapters/abstract_mysql_adapter"
+require "active_record-mysql_comment/schema_dumper"
 require "active_record-mysql_comment/version"
 
 module ActiveRecord
