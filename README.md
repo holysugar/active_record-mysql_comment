@@ -1,6 +1,6 @@
 # ActiveRecord::MysqlComment
 
-TODO: Write a gem description
+to use MySQL comment column
 
 ## Installation
 
@@ -16,9 +16,35 @@ Or install it yourself as:
 
     $ gem install active_record-mysql_comment
 
-## Usage
+## Reading Comment
 
-TODO: Write usage instructions here
+For example:
+
+```
+mysql> SHOW FULL FIELDS FROM test_models;
++-------------------+------------+-----------------+------+-----+---------+-------+---------------------------------+----------------+
+| Field             | Type       | Collation       | Null | Key | Default | Extra | Privileges                      | Comment        |
++-------------------+------------+-----------------+------+-----+---------+-------+---------------------------------+----------------+
+| comment_string    | varchar(1) | utf8_general_ci | YES  |     | NULL    |       | select,insert,update,references | column comment |
+| ja_comment_string | varchar(1) | utf8_general_ci | YES  |     | NULL    |       | select,insert,update,references | コメント       |
++-------------------+------------+-----------------+------+-----+---------+-------+---------------------------------+----------------+
+```
+
+```ruby
+class TestModel < ActiveRecord::Base
+end
+```
+
+How to read comment
+
+```ruby
+column = TestModel.columns.find{|c| c.name == 'comment_string' }
+column.comment #=> 'column comment'
+```
+
+## Migration
+
+TODO (Not yet implemented)
 
 ## Contributing
 
